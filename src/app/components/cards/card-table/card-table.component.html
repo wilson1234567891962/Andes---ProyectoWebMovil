@@ -1,4 +1,9 @@
+<div>
+  En desarrollo
+</div>
+
 <div
+  *ngIf="false"
   class="relative mt-10"
   [ngClass]="color === 'light' ? 'bg-white' : 'bg-red-900 text-white'"
 >
@@ -36,6 +41,7 @@
 </div>
 
 <div
+  *ngIf="false"
   class="relative flex flex-col min-w-0 break-words shadow-lg rounded mt-8"
   [ngClass]="color === 'light' ? 'bg-white' : 'bg-red-900 text-white'"
 >
@@ -175,7 +181,7 @@
   </div>
 </div>
 
-<div class="mt-3 mb-6">
+<div *ngIf="false" class="mt-3 mb-6">
   <nav class="items-center justify-between" aria-label="Table navigation">
     <ul class="inline-flex items-center">
       <li (click)="goItemPagination(this.selectionIndex - 1, product)">
@@ -240,7 +246,7 @@
   </nav>
 </div>
 
-<div *ngIf="visibleDetail">
+<div *ngIf="false">
   <div
     class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded"
     [ngClass]="color === 'light' ? 'bg-white' : 'bg-red-900 text-white'"
