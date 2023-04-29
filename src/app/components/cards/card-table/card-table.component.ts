@@ -34,7 +34,7 @@ export class CardTableComponent implements OnInit {
 
   private _color = 'light';
 
-  constructor(private utilitiesService: UtilitiesService, private storeService: StoreService, private loginService: LoginService,
+  constructor(public utilitiesService: UtilitiesService, private storeService: StoreService, private loginService: LoginService,
               private toastr: ToastrService) {
   }
 
@@ -104,8 +104,6 @@ export class CardTableComponent implements OnInit {
     }
     this.searchIsVisible = true;
     const result = this.product.filter(it =>
-      it.importer.toString().toLowerCase().includes(text) ||
-      it.store.toString().toLowerCase().includes(text) ||
       it.product.toString().toLowerCase().includes(text));
     this.productSearch = result;
     this.productsTmp = new Array();
@@ -119,18 +117,11 @@ export class CardTableComponent implements OnInit {
   }
 
   search() {
-    if (this.store === '' && this.category === '' && this.startDay === '' && this.endDay === '') {
+    if (this.store === '') {
       return;
     }
     const result = this.product.filter(it =>
-      it.store.toString().toLowerCase() === this.store.toLowerCase() ||
-      it.detail.category.toString().toLowerCase() === this.category.toLowerCase().trim()
-      || (this.startDay.length > 0 && this.endDay.length === 0 &&
-        this.utilitiesService.conversionDate(new Date(this.startDay), it.detail.expiration))
-      || (this.endDay.length > 0 && this.startDay.length === 0 &&
-        this.utilitiesService.conversionDate(new Date(this.endDay), it.detail.expiration))
-      || (this.endDay.length > 0 && this.startDay.length > 0 &&
-        this.utilitiesService.betweenDate(new Date(this.startDay), new Date(this.endDay), it.detail.expiration))
+      it.product.toString().toLowerCase() === this.store.toLowerCase()
     );
     this.searchIsVisible = true;
     this.productSearch = result;

@@ -17,7 +17,7 @@
                 class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                 htmlFor="grid-password"
               >
-                Correo electronico
+                {{this.utilitiesService.getLanguage().login.email}}
               </label>
               <input
                 [(ngModel)]="email"
@@ -33,7 +33,7 @@
                 class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                 htmlFor="grid-password"
               >
-                Clave
+                {{this.utilitiesService.getLanguage().login.password}}
               </label>
               <input
                 [(ngModel)]="password"
@@ -53,7 +53,7 @@
                   class="form-checkbox border-0 text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150 rounded"
                 />
                 <span class="ml-2 text-sm font-semibold text-blueGray-600">
-                  Recordar correo
+                 {{this.utilitiesService.getLanguage().login.remember}}
                 </span>
               </label>
             </div>
@@ -69,22 +69,10 @@
                 class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                 type="button"
               >
-                Ingresar
+                {{this.utilitiesService.getLanguage().login.btnLogin}}
               </button>
             </div>
           </form>
-        </div>
-      </div>
-      <div class="flex flex-wrap mt-6 relative" *ngIf="false">
-        <div class="w-1/2">
-          <a [routerLink]="['/auth/register']"  [queryParams]="{id:'forget'}" class="text-blueGray-200">
-            <small>Olvido la contraseña?</small>
-          </a>
-        </div>
-        <div class="w-1/2 text-right">
-          <a [routerLink]="['/auth/register']"  [queryParams]="{id:'register'}" class="text-blueGray-200">
-            <small>Crear una cuenta</small>
-          </a>
         </div>
       </div>
     </div>
