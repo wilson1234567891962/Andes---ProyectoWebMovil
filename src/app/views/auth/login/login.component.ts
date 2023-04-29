@@ -1,16 +1,16 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../../../services/login.service';
 import {Router} from '@angular/router';
 import {UtilitiesService} from '../../../services/utilities.service';
 import {ToastrService} from 'ngx-toastr';
-
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
 })
 export class LoginComponent implements OnInit {
-  constructor(private loginService: LoginService, private router: Router, private utilitiesService:UtilitiesService, private toastr: ToastrService) {}
+  constructor(private loginService: LoginService, private router: Router,
+              public utilitiesService:UtilitiesService, private toastr: ToastrService) {}
   private _email = '';
   private _password = '';
   private _isChecked = false;
@@ -23,13 +23,14 @@ export class LoginComponent implements OnInit {
   checkIsSaveUser() {
     const emailSaved = localStorage.getItem('USER_ACTIVE');
     if(emailSaved !== undefined && emailSaved !== 'null' && emailSaved !== ''){
-       this._email = emailSaved;
-       this._isChecked = true;
+      this._email = emailSaved;
+      this._isChecked = true;
     }
   }
   checkInfo(){
     return !this.utilitiesService.validatorsFields(this._email) ||
-      !this.utilitiesService.validatorsFields(this._password)|| !this.utilitiesService.validatorsEmail(this._email);
+      !this.utilitiesService.validatorsFields(this._password)||
+      !this.utilitiesService.validatorsEmail(this._email);
   }
   saveUser() {
     if(!this._isChecked)  {
