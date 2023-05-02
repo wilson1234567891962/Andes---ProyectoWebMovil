@@ -159,19 +159,22 @@
           </div>
         </div>
       </div>
-      <div>
-        <span>Producto:  {{productsTmp[this.indexSelection].product}}</span>
-      </div>
-      <div>
-        <span>Cantidad disponible:  {{productsTmp[this.indexSelection].amount}}</span>
-      </div>
-      <div>
-        <span>Cantidad</span>
-        <input type="number" id="table-amount" placeholder="Search for items" (keyup)="onChangeAmountEvent($event)">
-      </div>
-      <div>
-        <span>Cliente</span>
-
+      <div class="rounded-md border-2 m-4 border-black p-2">
+        <div class="flex justify-between mb-5">
+          <span class="bg-blue-100 font-semibold rounded-md box-decoration-slice px-2">Producto:</span>      
+          <span class="font-bold">{{productsTmp[this.indexSelection].product}}</span>
+        </div>
+        <div class="flex justify-between mb-5">
+          <span class="bg-blue-100 font-semibold rounded-md box-decoration-slice px-2">Cantidad disponible:</span>
+          <span>{{productsTmp[this.indexSelection].amount}}</span>
+        </div>
+        <div class="flex justify-between mb-5">
+          <span class="bg-blue-100 rounded-md font-semibold box-decoration-slice px-2">Cantidad:</span>
+          <input class="bg-gray-100 rounded-lg font-thin" type="number" id="table-amount" placeholder="Search for items" (keyup)="onChangeAmountEvent($event)">
+        </div>
+        <div class="flex justify-between mb-5">
+          <span class="bg-blue-100 font-semibold rounded-md box-decoration-slice px-2">Cliente:</span>
+        </div>
       </div>
     </div>
 
