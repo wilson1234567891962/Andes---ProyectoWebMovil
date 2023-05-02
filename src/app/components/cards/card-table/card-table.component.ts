@@ -22,7 +22,9 @@ export class CardTableComponent implements OnInit {
   categoryList = [];
   storeList = [];
   product = [];
-
+  client = [];
+  indexSelection = 0;
+  amountSelection = 0;
   @Input()
   get color(): string {
     return this._color;
@@ -49,6 +51,23 @@ export class CardTableComponent implements OnInit {
       }
     }
   }
+
+  getClient(): void {
+    if (this.storeService.client === undefined) {
+      this.storeService.client(this.loginService.tokenSecret).subscribe(it => {
+        this.storeService.client = it.data;
+        this.client = it.data;
+      }, error => {
+        this.toastr.error(error.error.code +': ' +  error.error.message, 'Error', {
+          timeOut: 7000,
+        });
+      })
+
+    } else {
+      this.client = this.storeService.client;
+    }
+  }
+
 
   getStore(): void {
     if (this.storeService.product === undefined) {
@@ -111,9 +130,14 @@ export class CardTableComponent implements OnInit {
     this.goItemPagination(this.selectionIndex, result);
   }
 
+  onChangeAmountEvent(event: any) {
+   this.amountSelection = event.target.value.toString();
+  }
+
   checkDetailProduct(index) {
     this.visibleDetail = true;
     this.detailProduct = this.productsTmp[index].detail;
+    this.indexSelection = index;
   }
 
   search() {
