@@ -53,7 +53,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr  *ngFor="let item of productsTmp; index as i;">
+        <tr (click)="checkDetailProduct(i)" *ngFor="let item of productsTmp; index as i;">
           <th
             class="border-t-0 px-2 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
           >
@@ -159,68 +159,19 @@
           </div>
         </div>
       </div>
-      <div class="block w-full overflow-x-auto">
-        <!-- Projects table -->
-        <table class="items-center w-full bg-transparent border-collapse">
-          <thead>
-          <tr>
-            <th
-              class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-              [ngClass]="
-              color === 'light'
-                ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
-                : 'bg-red-800 text-red-300 border-red-700'
-            "
-            >
-              {{utilitiesService.getLanguage().store.category}}
-            </th>
-            <th
-              class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-              [ngClass]="
-              color === 'light'
-                ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
-                : 'bg-red-800 text-red-300 border-red-700'
-            "
-            >
-              {{utilitiesService.getLanguage().store.expired}}
-            </th>
-            <th
-              class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-              [ngClass]="
-              color === 'light'
-                ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
-                : 'bg-red-800 text-red-300 border-red-700'
-            "
-            >
-              {{utilitiesService.getLanguage().store.located}}
-            </th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr
-            [ngClass]="
-          checkExpiration(detailProduct.expiration)
-          ?'text-red-600 border-red-700'
-          :'bg-blueGray-50 text-blueGray-500 border-blueGray-100'">
+      <div>
+        <span>Producto:  {{productsTmp[this.indexSelection].product}}</span>
+      </div>
+      <div>
+        <span>Cantidad disponible:  {{productsTmp[this.indexSelection].amount}}</span>
+      </div>
+      <div>
+        <span>Cantidad</span>
+        <input type="number" id="table-amount" placeholder="Search for items" (keyup)="onChangeAmountEvent($event)">
+      </div>
+      <div>
+        <span>Cliente</span>
 
-            <td
-              class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-            >
-              {{detailProduct.category}}
-            </td>
-            <td
-              class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-            >
-              {{detailProduct.expiration }}
-            </td>
-            <td
-              class="border-t-0 px-3 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-            >
-              {{detailProduct.locate}}
-            </td>
-          </tr>
-          </tbody>
-        </table>
       </div>
     </div>
 
