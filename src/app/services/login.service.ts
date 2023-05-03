@@ -14,6 +14,7 @@ export class LoginService {
   private _password = '';
   private _tokenSecret = '';
   private _rol = '';
+  private _idUser = '';
   private URL_SERVICES  = window.location.host.includes('localhost') ? environmentDev.URL_BACKEND_LOCAL : environmentProd.URL_PRODUCTION;
   constructor(private communicatorService: CommunicatorService) { }
 
@@ -71,5 +72,14 @@ export class LoginService {
 
   set rol(value: string) {
     this._rol = value;
+  }
+
+
+  get idUser(): string {
+    return this._idUser;
+  }
+
+  set idUser(value: string) {
+    this._idUser = value;
   }
 }

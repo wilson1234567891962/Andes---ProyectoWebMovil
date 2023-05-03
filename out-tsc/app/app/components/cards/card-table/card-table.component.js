@@ -19,6 +19,10 @@ let CardTableComponent = class CardTableComponent {
         this.categoryList = [];
         this.storeList = [];
         this.product = [];
+        this.client = [];
+        this.clientSelection = null;
+        this.indexSelection = 0;
+        this.amountSelection = 0;
         this._color = 'light';
     }
     get color() {
@@ -28,6 +32,7 @@ let CardTableComponent = class CardTableComponent {
         this._color = color !== 'light' && color !== 'dark' ? 'light' : color;
     }
     ngOnInit() {
+        this.getClient();
         this.getStore();
     }
     getCategories() {
@@ -35,6 +40,21 @@ let CardTableComponent = class CardTableComponent {
             if (!this.categoryList.includes(item.detail.category)) {
                 this.categoryList.push(item.detail.category);
             }
+        }
+    }
+    getClient() {
+        if (this.storeService.client === undefined) {
+            this.storeService.getClients(this.loginService.tokenSecret).subscribe(it => {
+                this.storeService.client = it.data;
+                this.client = it.data;
+            }, error => {
+                this.toastr.error(error.error.code + ': ' + error.error.message, 'Error', {
+                    timeOut: 7000,
+                });
+            });
+        }
+        else {
+            this.client = this.storeService.client;
         }
     }
     getStore() {
@@ -87,30 +107,25 @@ let CardTableComponent = class CardTableComponent {
             return;
         }
         this.searchIsVisible = true;
-        const result = this.product.filter(it => it.importer.toString().toLowerCase().includes(text) ||
-            it.store.toString().toLowerCase().includes(text) ||
-            it.product.toString().toLowerCase().includes(text));
+        const result = this.product.filter(it => it.product.toString().toLowerCase().includes(text));
         this.productSearch = result;
         this.productsTmp = new Array();
         this.selectionIndex = 1;
         this.goItemPagination(this.selectionIndex, result);
     }
+    onChangeAmountEvent(event) {
+        this.amountSelection = Number(event.target.value.toString());
+    }
     checkDetailProduct(index) {
         this.visibleDetail = true;
-        this.detailProduct = !this.searchIsVisible ? this.product[index].detail : this.productSearch[index].detail;
+        this.detailProduct = this.productsTmp[index].detail;
+        this.indexSelection = index;
     }
     search() {
-        if (this.store === '' && this.category === '' && this.startDay === '' && this.endDay === '') {
+        if (this.store === '') {
             return;
         }
-        const result = this.product.filter(it => it.store.toString().toLowerCase() === this.store.toLowerCase() ||
-            it.detail.category.toString().toLowerCase() === this.category.toLowerCase().trim()
-            || (this.startDay.length > 0 && this.endDay.length === 0 &&
-                this.utilitiesService.conversionDate(new Date(this.startDay), it.detail.expiration))
-            || (this.endDay.length > 0 && this.startDay.length === 0 &&
-                this.utilitiesService.conversionDate(new Date(this.endDay), it.detail.expiration))
-            || (this.endDay.length > 0 && this.startDay.length > 0 &&
-                this.utilitiesService.betweenDate(new Date(this.startDay), new Date(this.endDay), it.detail.expiration)));
+        const result = this.product.filter(it => it.product.toString().toLowerCase() === this.store.toLowerCase());
         this.searchIsVisible = true;
         this.productSearch = result;
         this.productsTmp = new Array();
@@ -126,11 +141,13 @@ let CardTableComponent = class CardTableComponent {
         this.productSearch = [];
         this.goItemPagination(this.selectionIndex, this.product);
     }
-    convertDate(value) {
-        return new Date(this.utilitiesService.changeFormatDate(value));
+    processOrder() {
+        this.detailProduct = this.productsTmp[this.indexSelection];
+        if (this.amountSelection > this.detailProduct.amount) {
+        }
     }
-    checkExpiration(value) {
-        return !this.utilitiesService.validatorDate(this.convertDate(value), 3);
+    orderClear() {
+        this.visibleDetail = false;
     }
 };
 __decorate([
