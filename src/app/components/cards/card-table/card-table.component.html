@@ -161,19 +161,33 @@
       </div>
       <div class="rounded-md border-2 m-4 border-black p-2">
         <div class="flex justify-between mb-5">
-          <span class="bg-blue-100 font-semibold rounded-md box-decoration-slice px-2">Producto:</span>      
+          <span class="bg-blue-100 font-semibold rounded-md box-decoration-slice px-2">{{utilitiesService.getLanguage().store.title}}:</span>
           <span class="font-bold">{{productsTmp[this.indexSelection].product}}</span>
         </div>
         <div class="flex justify-between mb-5">
-          <span class="bg-blue-100 font-semibold rounded-md box-decoration-slice px-2">Cantidad disponible:</span>
+          <span class="bg-blue-100 font-semibold rounded-md box-decoration-slice px-2">{{utilitiesService.getLanguage().store.amountAvailable}}:</span>
           <span>{{productsTmp[this.indexSelection].amount}}</span>
         </div>
         <div class="flex justify-between mb-5">
-          <span class="bg-blue-100 rounded-md font-semibold box-decoration-slice px-2">Cantidad:</span>
+          <span class="bg-blue-100 rounded-md font-semibold box-decoration-slice px-2">{{utilitiesService.getLanguage().store.count}}:</span>
+        </div>
+        <div class="flex justify-between mb-5">
           <input class="bg-gray-100 rounded-lg font-thin" type="number" id="table-amount" placeholder="Search for items" (keyup)="onChangeAmountEvent($event)">
         </div>
         <div class="flex justify-between mb-5">
-          <span class="bg-blue-100 font-semibold rounded-md box-decoration-slice px-2">Cliente:</span>
+          <span class="bg-blue-100 font-semibold rounded-md box-decoration-slice px-2">{{utilitiesService.getLanguage().store.client}}:</span>
+        </div>
+        <div class="flex justify-between mb-5">
+          <select id="small" class="selectWinery minimal"  [(ngModel)]="clientSelection">
+            <option [value]="item.id" *ngFor="let item of client" >{{item.name}}</option>
+          </select>
+        </div>
+        <div
+          class="relative mt-3 border-collapse break-words rounded shadow-lg"
+          [ngClass]="color === 'light' ? 'bg-white' : 'bg-red-900 text-white'"
+        >
+          <button type="button" style="outline: transparent" class="bg-red-600 text-white rounded-lg p-3 m-3 ml-3" (click)="processOrder()">{{utilitiesService.getLanguage().store.run}}</button>
+          <button type="button" style="background:#989898" class="text-white rounded-lg p-3 m-3 ml-3 " (click)="orderClear()">{{utilitiesService.getLanguage().store.cancel}}</button>
         </div>
       </div>
     </div>

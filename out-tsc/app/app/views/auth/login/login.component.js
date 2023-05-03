@@ -23,7 +23,8 @@ let LoginComponent = class LoginComponent {
     }
     checkInfo() {
         return !this.utilitiesService.validatorsFields(this._email) ||
-            !this.utilitiesService.validatorsFields(this._password) || !this.utilitiesService.validatorsEmail(this._email);
+            !this.utilitiesService.validatorsFields(this._password) ||
+            !this.utilitiesService.validatorsEmail(this._email);
     }
     saveUser() {
         if (!this._isChecked) {

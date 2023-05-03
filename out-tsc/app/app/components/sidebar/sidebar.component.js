@@ -1,8 +1,9 @@
 import { __decorate } from "tslib";
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 let SidebarComponent = class SidebarComponent {
-    constructor() {
-        this.collapseShow = "hidden";
+    constructor(utilitiesService) {
+        this.utilitiesService = utilitiesService;
+        this.collapseShow = 'hidden';
     }
     ngOnInit() { }
     toggleCollapseShow(classes) {
@@ -11,8 +12,8 @@ let SidebarComponent = class SidebarComponent {
 };
 SidebarComponent = __decorate([
     Component({
-        selector: "app-sidebar",
-        templateUrl: "./sidebar.component.html",
+        selector: 'app-sidebar',
+        templateUrl: './sidebar.component.html',
     })
 ], SidebarComponent);
 export { SidebarComponent };

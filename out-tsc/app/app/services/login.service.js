@@ -1,7 +1,7 @@
 import { __decorate } from "tslib";
 import { Injectable } from '@angular/core';
 import { environmentProd } from '../../environments/environment.prod';
-import { environmentDev } from '../../environments/environment';
+import { environmentDev } from '../../environments/environment.dev';
 let LoginService = class LoginService {
     constructor(communicatorService) {
         this.communicatorService = communicatorService;

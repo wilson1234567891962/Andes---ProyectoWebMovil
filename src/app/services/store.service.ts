@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import {CommunicatorService} from './communicator.service';
 import { environmentDev} from '../../environments/environment.dev';
 import {environmentProd} from '../../environments/environment.prod';
+import {DeliveryPurchaseModel} from '../model/DeliveryPurchaseModel';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,11 @@ export class StoreService {
 
   getClients(token: string): Observable<any>  {
     return this.communicatorService.http_get( this.URL_SERVICES + 'ORDER/getClient/', token);
+  }
+
+  sendDeliveryPurchaseEntity(token: string, deliveryPurchaseModel: DeliveryPurchaseModel): Observable<any>  {
+    const body: any = deliveryPurchaseModel;
+    return this.communicatorService.http_post( this.URL_SERVICES + 'ORDER/sendDeliveryPurchaseEntity/',body , token);
   }
 
   get product(): any {

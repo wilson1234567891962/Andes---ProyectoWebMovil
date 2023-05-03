@@ -3,6 +3,7 @@ import {UtilitiesService} from '../../../services/utilities.service';
 import {StoreService} from '../../../services/store.service';
 import {LoginService} from '../../../services/login.service';
 import {ToastrService} from 'ngx-toastr';
+import {DeliveryPurchaseModel} from '../../../model/DeliveryPurchaseModel';
 
 @Component({
   selector: 'app-card-table',
@@ -23,6 +24,7 @@ export class CardTableComponent implements OnInit {
   storeList = [];
   product = [];
   client = [];
+  clientSelection: any = null;
   indexSelection = 0;
   amountSelection = 0;
   @Input()
@@ -41,6 +43,7 @@ export class CardTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getClient();
     this.getStore();
   }
 
@@ -54,7 +57,7 @@ export class CardTableComponent implements OnInit {
 
   getClient(): void {
     if (this.storeService.client === undefined) {
-      this.storeService.client(this.loginService.tokenSecret).subscribe(it => {
+      this.storeService.getClients(this.loginService.tokenSecret).subscribe(it => {
         this.storeService.client = it.data;
         this.client = it.data;
       }, error => {
@@ -131,7 +134,7 @@ export class CardTableComponent implements OnInit {
   }
 
   onChangeAmountEvent(event: any) {
-   this.amountSelection = event.target.value.toString();
+   this.amountSelection = Number(event.target.value.toString());
   }
 
   checkDetailProduct(index) {
@@ -164,11 +167,33 @@ export class CardTableComponent implements OnInit {
     this.goItemPagination(this.selectionIndex, this.product);
   }
 
-  convertDate(value) {
-    return new Date(this.utilitiesService.changeFormatDate(value));
+  processOrder() {
+    this.detailProduct = this.productsTmp[this.indexSelection];
+    if(this.amountSelection > this.detailProduct.amount || this.amountSelection === 0 ){
+      this.toastr.error('La cantidad digitada no puede ser mayor a la disponible o debe ingresar una cantidad', 'Error', {
+        timeOut: 7000,
+      });
+      return;
+    }
+
+    if(!this.clientSelection ){
+      this.toastr.error('Debe seleccionar un cliente', 'Error', {
+        timeOut: 7000,
+      });
+      return;
+    }
+
+    this.storeService.sendDeliveryPurchaseEntity(this.loginService.tokenSecret,
+      new DeliveryPurchaseModel(Number(this.detailProduct.id),
+        Number(this.amountSelection), Number(this.clientSelection), Number(this.loginService.idUser)))
+      .subscribe(it =>{
+          this.toastr.success(it.data.code +': ' +  it.data.message, 'Info', {
+             timeOut: 7000,
+        })});
+    console.log(this.detailProduct);
   }
 
-  checkExpiration(value) {
-    return !this.utilitiesService.validatorDate(this.convertDate(value), 3)
+  orderClear() {
+    this.visibleDetail = false;
   }
 }

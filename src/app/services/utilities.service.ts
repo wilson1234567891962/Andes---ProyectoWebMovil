@@ -34,7 +34,11 @@ export class UtilitiesService {
         titleDetail: 'DETALLE DEL PRODUCTO',
         category: 'CATEGORIA',
         expired: 'CADUCIDAD',
-        located: 'LOCALIZATION'
+        located: 'LOCALIZATION',
+        amountAvailable: 'CANTIDAD DISPONIBLE',
+        client: 'CLIENTE',
+        run: 'EJECUTAR',
+        cancel: 'CANCELAR'
       },
       logistic: {
         title: 'LOGISTICA',
@@ -83,7 +87,11 @@ export class UtilitiesService {
         titleDetail: 'DETAIL OF PRODUCT',
         category: 'CATEGORY',
         expired: 'CADUCIDAD',
-        located: 'LOCALIZATION'
+        located: 'LOCALIZATION',
+        amountAvailable: 'AVAILABLE AMOUNT',
+        client: 'CLIENT',
+        run: 'EXECUTE',
+        cancel: 'CANCEL'
       },
       logistic: {
         title: 'LOGISTIC',

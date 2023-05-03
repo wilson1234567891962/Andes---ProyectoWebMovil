@@ -1,6 +1,6 @@
 import { __decorate } from "tslib";
 import { Injectable } from '@angular/core';
-import { environmentDev } from '../../environments/environment';
+import { environmentDev } from '../../environments/environment.dev';
 import { environmentProd } from '../../environments/environment.prod';
 let OrderService = class OrderService {
     constructor(communicatorService) {

@@ -15,7 +15,7 @@ let LogisticExampleComponent = class LogisticExampleComponent {
         this.drivers = [];
         this.productSearch = [];
         this.categoryList = [];
-        this.stateList = ['SELECT OPTION', 'PENDING', 'PROCESSED', 'CANCELED', 'EXECUTING'];
+        this.stateList = ['PENDING', 'PROCESSED', 'CANCELED', 'EXECUTING'];
         this.storeList = [];
         this.product = [];
         this._color = 'light';
@@ -47,21 +47,15 @@ let LogisticExampleComponent = class LogisticExampleComponent {
         });
     }
     getOrders() {
-        if (this.orderService.orders === undefined) {
-            this.orderService.getOrders(this.loginService.tokenSecret).subscribe(it => {
-                this.orderService.orders = it.data;
-                this.product = it.data;
-                this.setProduct();
-            }, error => {
-                this.toastr.error(error.error.code + ': ' + error.error.message, 'Error', {
-                    timeOut: 7000,
-                });
-            });
-        }
-        else {
-            this.product = this.orderService.orders;
+        this.orderService.getOrders(this.loginService.tokenSecret).subscribe(it => {
+            this.orderService.orders = it.data;
+            this.product = it.data;
             this.setProduct();
-        }
+        }, error => {
+            this.toastr.error(error.error.code + ': ' + error.error.message, 'Error', {
+                timeOut: 7000,
+            });
+        });
     }
     setProduct() {
         for (const item of this.product) {
@@ -107,7 +101,8 @@ let LogisticExampleComponent = class LogisticExampleComponent {
     }
     checkDetailProduct(index) {
         const store = Object.assign({}, this.productsTmp[index]);
-        if (!this.detailProduct.some(elem => elem === store)) {
+        const it = this.detailProduct.filter(data => data.idOrder === store.idOrder);
+        if (it.length === 0) {
             this.detailProduct.push(store);
         }
     }
@@ -138,10 +133,14 @@ let LogisticExampleComponent = class LogisticExampleComponent {
         return clone;
     }
     onChangeState(event, store) {
+        if (event.target.value === 'DEFAULT') {
+            return;
+        }
         store.state = event.target.value;
     }
     onchangeDriver(event, store) {
-        if () {
+        if (event.target.value === 'DEFAULT') {
+            return;
         }
         store.driver = event.target.value;
     }
@@ -150,8 +149,28 @@ let LogisticExampleComponent = class LogisticExampleComponent {
             this.toastr.error('Debe selecionar alguna orden con su estados y conductor', 'Error', {
                 timeOut: 7000,
             });
+            return;
+        }
+        let state = true;
+        for (const item of this.detailProduct) {
+            const purchases = this.product.filter(it => it.idOrder === it.idOrder)[0];
+            if (item.driver === undefined || purchases.state === item.state) {
+                state = false;
+                break;
+            }
+        }
+        if (!state) {
+            this.toastr.error('Debe seleccionar el estado y conductor, adicional el estado no puede ser al actual', 'Error', {
+                timeOut: 7000,
+            });
+            return;
         }
         this.orderService.updateOrders(this.loginService.tokenSecret, this.detailProduct).subscribe(it => {
+            this.toastr.success(it.data.code + ': ' + it.data.message, 'Info', {
+                timeOut: 7000,
+            });
+            this.getOrders();
+            this.getDriver();
         }, error => {
             this.toastr.error(error.error.code + ': ' + error.error.message, 'Error', {
                 timeOut: 7000,

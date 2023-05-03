@@ -2,6 +2,114 @@ import { __decorate } from "tslib";
 import { Injectable } from '@angular/core';
 let UtilitiesService = class UtilitiesService {
     constructor() {
+        this._language = [
+            {
+                login: {
+                    email: 'CORREO ELECTRONICO',
+                    password: 'CLAVE',
+                    remember: 'RECORDAR CORREO',
+                    btnLogin: 'INGRESAR'
+                },
+                sideBar: {
+                    panel: 'PANEL DE ADMINISTRACION',
+                    setting: 'CONFIGURACION',
+                    store: 'VENDEDOR',
+                    logistic: 'LOGISTICA',
+                    goOut: 'SALIR'
+                },
+                setting: {
+                    title: 'PANEL DE ADMINISTRATION',
+                    email: 'CORREO ELECTRONICO',
+                    language: 'IDIOMA',
+                    btnSave: 'GUARDAR CONFIGURACION'
+                },
+                store: {
+                    title: 'PRODUCTO',
+                    store: 'BODEGA',
+                    manufacture: 'FABRICANTE',
+                    importer: 'IMPORTADOR',
+                    count: 'CANTIDAD',
+                    titleDetail: 'DETALLE DEL PRODUCTO',
+                    category: 'CATEGORIA',
+                    expired: 'CADUCIDAD',
+                    located: 'LOCALIZATION',
+                    amountAvailable: 'CANTIDAD DISPONIBLE',
+                    client: 'CLIENTE',
+                    run: 'EJECUTAR',
+                    cancel: 'CANCELAR'
+                },
+                logistic: {
+                    title: 'LOGISTICA',
+                    search: 'BUSCAR',
+                    clean: 'LIMPIAR',
+                    listOrders: 'LISTADO DE ORDENES',
+                    name: 'NOMBRE',
+                    address: 'DIRECCION',
+                    phone: 'TELEFONO',
+                    status: 'ESTADO',
+                    ordersToProcess: 'ORDENES POR PROCESAR',
+                    product: 'PRODUCTO',
+                    amountRequested: 'CANTIDAD SOLICITADA',
+                    amountAvailabe: 'CANTIDAD DISPONIBLE',
+                    driver: 'CONDUCTOR',
+                    runOrders: 'PROCESAR ORDENES',
+                    cancelOrders: 'CANCELAR ORDENES'
+                }
+            },
+            {
+                login: {
+                    email: 'EMAIL',
+                    password: 'PASSWORD',
+                    remember: 'REMEMBER EMAIL',
+                    btnLogin: 'LOGIN'
+                },
+                sideBar: {
+                    panel: 'ADMINISTRATION',
+                    setting: 'SETTING',
+                    store: 'SELLER',
+                    logistic: 'LOGISTIC',
+                    goOut: 'LOGOUT'
+                },
+                setting: {
+                    title: 'ADMINISTRATION',
+                    email: 'EMAIL',
+                    language: 'LANGUAGE',
+                    btnSave: 'SAVE CHANGES'
+                },
+                store: {
+                    title: 'PRODUCT',
+                    store: 'STORE',
+                    manufacture: 'MANUFACTURE',
+                    importer: 'IMPORTER',
+                    count: 'COUNT',
+                    titleDetail: 'DETAIL OF PRODUCT',
+                    category: 'CATEGORY',
+                    expired: 'CADUCIDAD',
+                    located: 'LOCALIZATION',
+                    amountAvailable: 'AVAILABLE AMOUNT',
+                    client: 'CLIENT',
+                    run: 'EXECUTE',
+                    cancel: 'CANCEL'
+                },
+                logistic: {
+                    title: 'LOGISTIC',
+                    search: 'SEARCH',
+                    clean: 'CLEAN',
+                    listOrders: 'LIST ORDERS',
+                    name: 'NAME',
+                    address: 'ADDRESS',
+                    phone: 'PHONE',
+                    status: 'STATUS',
+                    ordersToProcess: 'ORDENES TO PROCESS',
+                    product: 'PRODUCT',
+                    amountRequested: 'AMOUNT REQUESTED',
+                    amountAvailabe: 'AMOUNT AVAILABLE',
+                    driver: 'DRIVER',
+                    runOrders: 'PROCESS ORDERS',
+                    cancelOrders: 'CANCEL ORDERS'
+                }
+            }
+        ];
     }
     validatorsFields(input) {
         return input !== undefined && input !== null && input !== 'null' && input.length !== 0;
@@ -98,6 +206,15 @@ let UtilitiesService = class UtilitiesService {
             endIndex,
             pages
         };
+    }
+    getLanguage() {
+        const language = localStorage.getItem('LANGUAGE') ? localStorage.getItem('LANGUAGE') : 'ESPAÑOL';
+        if (language === 'ESPAÑOL') {
+            return this._language[0];
+        }
+        if (language === 'INGLES') {
+            return this._language[1];
+        }
     }
 };
 UtilitiesService = __decorate([

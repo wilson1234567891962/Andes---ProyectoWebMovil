@@ -38,9 +38,7 @@ import { LogisticExampleComponent } from './components/logistic/logistic-example
 import { IndexDropdownComponent } from './components/dropdowns/index-dropdown/index-dropdown.component';
 import { TableDropdownComponent } from './components/dropdowns/table-dropdown/table-dropdown.component';
 import { PagesDropdownComponent } from './components/dropdowns/pages-dropdown/pages-dropdown.component';
-import { NotificationDropdownComponent } from './components/dropdowns/notification-dropdown/notification-dropdown.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { UserDropdownComponent } from './components/dropdowns/user-dropdown/user-dropdown.component';
 import { FormsModule } from '@angular/forms';
 import { LoadingComponent } from './components/loading/loading.component';
 import { CommunicatorService } from './services/communicator.service';
@@ -59,8 +57,6 @@ AppModule = __decorate([
             IndexDropdownComponent,
             PagesDropdownComponent,
             TableDropdownComponent,
-            NotificationDropdownComponent,
-            UserDropdownComponent,
             SidebarComponent,
             FooterComponent,
             FooterSmallComponent,
