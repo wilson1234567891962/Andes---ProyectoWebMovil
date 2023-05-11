@@ -185,7 +185,7 @@ export class CardTableComponent implements OnInit {
           this.toastr.success(it.data.code +': ' +  it.data.message, 'Info', {
              timeOut: 7000,
         })
-        this.detailProduct = false;
+        this.visibleDetail = false;
         this.getClient();
         this.getStore();
 
