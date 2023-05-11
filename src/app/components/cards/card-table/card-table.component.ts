@@ -73,7 +73,6 @@ export class CardTableComponent implements OnInit {
 
 
   getStore(): void {
-    if (this.storeService.product === undefined) {
       this.storeService.getStore(this.loginService.tokenSecret).subscribe(it => {
         this.storeService.product = it.data;
         this.product = it.data;
@@ -83,11 +82,6 @@ export class CardTableComponent implements OnInit {
           timeOut: 7000,
         });
       })
-
-    } else {
-      this.product = this.storeService.product;
-      this.setProduct();
-    }
   }
 
   setProduct(): void {
@@ -189,7 +183,11 @@ export class CardTableComponent implements OnInit {
       .subscribe(it =>{
           this.toastr.success(it.data.code +': ' +  it.data.message, 'Info', {
              timeOut: 7000,
-        })});
+        })
+        this.detailProduct = false;
+        this.getClient();
+        this.getStore();
+      });
     console.log(this.detailProduct);
   }
 
