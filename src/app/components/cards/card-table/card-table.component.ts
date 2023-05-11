@@ -4,6 +4,7 @@ import {StoreService} from '../../../services/store.service';
 import {LoginService} from '../../../services/login.service';
 import {ToastrService} from 'ngx-toastr';
 import {DeliveryPurchaseModel} from '../../../model/DeliveryPurchaseModel';
+import {error} from 'protractor';
 
 @Component({
   selector: 'app-card-table',
@@ -187,6 +188,11 @@ export class CardTableComponent implements OnInit {
         this.detailProduct = false;
         this.getClient();
         this.getStore();
+
+      }, tes => {
+        this.toastr.error(tes.error.code + ': ' + tes.error.message, 'Error', {
+          timeOut: 7000,
+        });
       });
     console.log(this.detailProduct);
   }
