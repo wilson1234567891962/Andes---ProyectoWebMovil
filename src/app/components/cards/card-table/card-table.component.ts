@@ -4,6 +4,7 @@ import {StoreService} from '../../../services/store.service';
 import {LoginService} from '../../../services/login.service';
 import {ToastrService} from 'ngx-toastr';
 import {DeliveryPurchaseModel} from '../../../model/DeliveryPurchaseModel';
+import {error} from 'protractor';
 
 @Component({
   selector: 'app-card-table',
@@ -56,7 +57,6 @@ export class CardTableComponent implements OnInit {
   }
 
   getStore(): void {
-    if (this.storeService.product === undefined) {
       this.storeService.getStore(this.loginService.tokenSecret).subscribe(it => {
         this.storeService.product = it.data;
         this.product = it.data;
@@ -66,11 +66,6 @@ export class CardTableComponent implements OnInit {
           timeOut: 7000,
         });
       })
-
-    } else {
-      this.product = this.storeService.product;
-      this.setProduct();
-    }
   }
 
   setProduct(): void {
@@ -172,7 +167,16 @@ export class CardTableComponent implements OnInit {
       .subscribe(it =>{
           this.toastr.success(it.data.code +': ' +  it.data.message, 'Info', {
              timeOut: 7000,
-        })});
+        })
+        this.visibleDetail = false;
+        this.getClient();
+        this.getStore();
+
+      }, tes => {
+        this.toastr.error(tes.error.code + ': ' + tes.error.message, 'Error', {
+          timeOut: 7000,
+        });
+      });
     console.log(this.detailProduct);
   }
 
