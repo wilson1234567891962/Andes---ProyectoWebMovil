@@ -44,7 +44,7 @@ export class CardTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getClient();
+    this.getClientService();
     this.getStore();
   }
 
@@ -55,6 +55,23 @@ export class CardTableComponent implements OnInit {
       }
     }
   }
+
+  getClientService(): void {
+    if (this.storeService.client === undefined) {
+      this.storeService.getClients(this.loginService.tokenSecret).subscribe(it => {
+        this.storeService.client = it.data;
+        this.client = it.data;
+      }, error => {
+        this.toastr.error(error.error.code +': ' +  error.error.message, 'Error', {
+          timeOut: 7000,
+        });
+      })
+
+    } else {
+      this.client = this.storeService.client;
+    }
+  }
+
 
   getStore(): void {
       this.storeService.getStore(this.loginService.tokenSecret).subscribe(it => {
@@ -169,7 +186,7 @@ export class CardTableComponent implements OnInit {
              timeOut: 7000,
         })
         this.visibleDetail = false;
-        this.getClient();
+        this.getClientService();
         this.getStore();
 
       }, tes => {
@@ -177,7 +194,6 @@ export class CardTableComponent implements OnInit {
           timeOut: 7000,
         });
       });
-    console.log(this.detailProduct);
   }
 
   orderClear() {
