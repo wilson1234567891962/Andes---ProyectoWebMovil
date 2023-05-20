@@ -17,6 +17,7 @@ export class UtilitiesService {
         setting: 'CONFIGURACION',
         store: 'VENDEDOR',
         logistic: 'CLIENTE',
+        delivery: 'REPARTIDOR',
         goOut: 'SALIR'
       },
       setting: {
@@ -71,7 +72,8 @@ export class UtilitiesService {
         setting: 'SETTING',
         store: 'SELLER',
         logistic: 'CLIENT',
-        goOut: 'LOGOUT'
+        goOut: 'LOGOUT',
+        delivery: 'DELIVERY MAN',
       },
       setting: {
         title: 'ADMINISTRATION',
