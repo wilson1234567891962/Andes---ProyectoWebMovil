@@ -108,7 +108,8 @@ export class ClientComponent implements OnInit {
     }
     this.searchIsVisible = true;
     const result = this.product.filter(it =>
-      it.name.toString().toLowerCase().includes(text)
+      it.name.toString().toLowerCase().includes(text) ||
+      it.idOrder.toString().toLowerCase().includes(text)
     );
     this.productSearch = result;
     this.productsTmp = new Array();
