@@ -153,6 +153,7 @@ export class DeliveryManComponent implements OnInit {
         timeOut: 7000,
       });
       this.getOrders();
+      this.listProduct.length = 0;
     }, error => {
       this.toastr.error(error.error.code + ': ' + error.error.message, 'Error', {
         timeOut: 7000,
@@ -175,10 +176,7 @@ export class DeliveryManComponent implements OnInit {
   }
 
   clean() {
-    this.state = '';
-    this.searchIsVisible = false;
-    this.productSearch = [];
-    this.goItemPagination(this.selectionIndex, this.product);
+     this.listProduct.length = 0;
   }
 
   orderClear() {
