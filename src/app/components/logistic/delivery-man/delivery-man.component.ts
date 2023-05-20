@@ -21,7 +21,7 @@ export class DeliveryManComponent implements OnInit {
   stateList = ['PENDING', 'PROCESSED', 'CANCELED', 'EXECUTING'];
   storeList = [];
   product = [];
-  listProduct = [];
+  listProduct: any = [];
 
   @Input()
   get color(): string {
@@ -134,6 +134,30 @@ export class DeliveryManComponent implements OnInit {
     if (it.length === 0) {
       this.detailProduct.push(store);
     }
+  }
+
+  updateOrders() {
+    if (this.listProduct.length === 0) {
+      this.toastr.error('Debe haber selecionado alguna orden para devolver', 'Error', {
+        timeOut: 7000,
+      });
+      return;
+    }
+    for (const item of this.listProduct) {
+      item.state = 'CANCELED'
+      item.comment = 'CANCELED BY USER'
+      delete item.driver;
+    }
+    this.orderService.updateOrders(this.loginService.tokenSecret, this.listProduct).subscribe(it => {
+      this.toastr.success(it.data.code +': ' +  it.data.message, 'Info', {
+        timeOut: 7000,
+      });
+      this.getOrders();
+    }, error => {
+      this.toastr.error(error.error.code + ': ' + error.error.message, 'Error', {
+        timeOut: 7000,
+      });
+    })
   }
 
   search() {
