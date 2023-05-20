@@ -73,7 +73,7 @@
                 : 'bg-red-800 text-red-300 border-red-700'
             "
         >
-          {{utilitiesService.getLanguage().logistic.status}}
+          {{utilitiesService.getLanguage().logistic.title}}
         </th>
       </tr>
       </thead>
@@ -88,7 +88,7 @@
           class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
         >
           <div class="flex items-center">
-            <span class="mr-2"> {{item.state}}</span>
+            <span class="mr-2"> {{item.driver?.driverName}}</span>
           </div>
         </td>
       </tr>

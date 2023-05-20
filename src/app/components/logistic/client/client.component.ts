@@ -33,7 +33,7 @@ export class ClientComponent implements OnInit {
 
   private _color = 'light';
 
-  constructor(private utilitiesService: UtilitiesService, private orderService: OrderService, private loginService: LoginService,
+  constructor(public utilitiesService: UtilitiesService, private orderService: OrderService, private loginService: LoginService,
               private toastr: ToastrService) {
   }
 
