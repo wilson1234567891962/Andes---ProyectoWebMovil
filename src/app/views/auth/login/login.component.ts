@@ -51,8 +51,14 @@ export class LoginComponent implements OnInit {
     this.loginService.login().subscribe(result => {
       this.loginService.tokenSecret = result.data.token;
       this.loginService.rol = result.data.rol;
+      console.log('aags' + this.loginService.rol);
       this.loginService.idUser = result.data.idUser;
-      this.router.navigate(['admin/tables']);
+
+      if(this.loginService.rol !== 'OPERATOR'){
+        this.router.navigate(['admin/tables']);
+      } else {
+        this.router.navigate(['admin/delivery']);
+      }
     }, error => {
       this.toastr.error(error.error.code +': ' +  error.error.message, 'Error', {
         timeOut: 7000,

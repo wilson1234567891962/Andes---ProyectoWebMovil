@@ -58,6 +58,11 @@ export class UtilitiesService {
         driver: 'CONDUCTOR',
         runOrders: 'PROCESAR ORDENES',
         cancelOrders: 'CANCELAR ORDENES'
+      },
+      deliveryMan: {
+        title:'ACTUALIZAR',
+        clean: 'LIMPIAR',
+        restore: 'DEVOLVER'
       }
     },
     {
@@ -113,6 +118,11 @@ export class UtilitiesService {
         driver: 'DRIVER',
         runOrders: 'PROCESS ORDERS',
         cancelOrders: 'CANCEL ORDERS'
+      },
+      deliveryMan: {
+        title:'UPDATED',
+        clean: 'CLEAN',
+        restore: 'RESTORE'
       }
     }
   ];

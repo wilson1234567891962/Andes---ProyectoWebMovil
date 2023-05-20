@@ -21,6 +21,7 @@ export class DeliveryManComponent implements OnInit {
   stateList = ['PENDING', 'PROCESSED', 'CANCELED', 'EXECUTING'];
   storeList = [];
   product = [];
+  listProduct = [];
 
   @Input()
   get color(): string {
@@ -71,6 +72,13 @@ export class DeliveryManComponent implements OnInit {
         timeOut: 7000,
       });
     })
+  }
+
+  addElement(item: any): void {
+    this.listProduct.push(item);
+    this.toastr.success('Elemento agregado', 'Info', {
+      timeOut: 3000,
+    });
   }
 
   setProduct(): void {
