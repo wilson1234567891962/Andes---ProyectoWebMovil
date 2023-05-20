@@ -20,6 +20,7 @@ import { IndexComponent } from './views/index/index.component';
 import { LandingComponent } from './views/landing/landing.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import {RoutingGuard} from './guard/routing.guard';
+import {DeliveryManComponent} from './components/logistic/delivery-man/delivery-man.component';
 
 const routes: Routes = [
   // admin views
@@ -32,6 +33,7 @@ const routes: Routes = [
       { path: 'settings', component: SettingsComponent },
       { path: 'tables', component: TablesComponent },
       { path: 'logistic', component: LogisticComponent },
+      { path: 'delivery', component: DeliveryManComponent },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ],
   },
