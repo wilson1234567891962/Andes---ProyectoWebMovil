@@ -5,10 +5,10 @@ import {ToastrService} from 'ngx-toastr';
 import {OrderService} from '../../../services/order.service';
 
 @Component({
-  selector: 'app-logistic-example',
-  templateUrl: './logistic-example.component.html',
+  selector: 'app-delivery-man',
+  templateUrl: './delivery-man.component.html',
 })
-export class LogisticExampleComponent implements OnInit {
+export class DeliveryManComponent implements OnInit {
   state = '';
   searchIsVisible = false;
   visibleDetail = false;

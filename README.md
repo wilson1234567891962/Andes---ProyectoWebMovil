@@ -193,7 +193,7 @@ notus-angular
 │   │   │   ├── maps
 │   │   │   │   └── map-example
 │   │   │   │       ├── map-example.component.html
-│   │   │   │       └── logistic-example.component.ts
+│   │   │   │       └── delivery-man.component.ts
 │   │   │   ├── navbars
 │   │   │   │   ├── admin-navbar
 │   │   │   │   │   ├── admin-navbar.component.html

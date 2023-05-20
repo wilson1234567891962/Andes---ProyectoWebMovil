@@ -40,7 +40,7 @@ import { FooterComponent } from './components/footers/footer/footer.component';
 import { FooterSmallComponent } from './components/footers/footer-small/footer-small.component';
 import { HeaderStatsComponent } from './components/headers/header-stats/header-stats.component';
 import { IndexNavbarComponent } from './components/navbars/index-navbar/index-navbar.component';
-import { LogisticExampleComponent } from './components/logistic/logistic-example/logistic-example.component';
+import { ClientComponent } from './components/logistic/client/client.component';
 import { IndexDropdownComponent } from './components/dropdowns/index-dropdown/index-dropdown.component';
 import { TableDropdownComponent } from './components/dropdowns/table-dropdown/table-dropdown.component';
 import { PagesDropdownComponent } from './components/dropdowns/pages-dropdown/pages-dropdown.component';
@@ -51,6 +51,7 @@ import {CommunicatorService} from './services/communicator.service';
 import {HttpClientModule} from '@angular/common/http';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { DeliveryManComponent } from './components/logistic/delivery-man/delivery-man.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     CardStatsComponent,
     CardTableComponent,
     HeaderStatsComponent,
-    LogisticExampleComponent,
+    ClientComponent,
+    DeliveryManComponent,
     AuthNavbarComponent,
     AdminNavbarComponent,
     IndexNavbarComponent,

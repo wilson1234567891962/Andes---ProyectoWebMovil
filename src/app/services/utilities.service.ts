@@ -16,7 +16,7 @@ export class UtilitiesService {
         panel: 'PANEL DE ADMINISTRACION',
         setting: 'CONFIGURACION',
         store: 'VENDEDOR',
-        logistic: 'LOGISTICA',
+        logistic: 'CLIENTE',
         goOut: 'SALIR'
       },
       setting: {
@@ -26,7 +26,7 @@ export class UtilitiesService {
         btnSave: 'GUARDAR CONFIGURACION'
       },
       store: {
-        title: 'PRODUCTO',
+        title: 'ORDENES',
         store: 'BODEGA',
         manufacture: 'FABRICANTE',
         importer: 'IMPORTADOR',
@@ -41,7 +41,8 @@ export class UtilitiesService {
         cancel: 'CANCELAR'
       },
       logistic: {
-        title: 'LOGISTICA',
+        titlePrincipal: 'ORDENES',
+        title: 'CLIENTE',
         search: 'BUSCAR',
         clean: 'LIMPIAR',
         listOrders: 'LISTADO DE ORDENES',
@@ -69,7 +70,7 @@ export class UtilitiesService {
         panel: 'ADMINISTRATION',
         setting: 'SETTING',
         store: 'SELLER',
-        logistic: 'LOGISTIC',
+        logistic: 'CLIENT',
         goOut: 'LOGOUT'
       },
       setting: {
@@ -94,7 +95,8 @@ export class UtilitiesService {
         cancel: 'CANCEL'
       },
       logistic: {
-        title: 'LOGISTIC',
+        titlePrincipal: 'ORDERS',
+        title: 'CLIENT',
         search: 'SEARCH',
         clean: 'CLEAN',
         listOrders: 'LIST ORDERS',
