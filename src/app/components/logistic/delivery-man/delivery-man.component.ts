@@ -1,8 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {UtilitiesService} from '../../../services/utilities.service';
-import {LoginService} from '../../../services/login.service';
-import {ToastrService} from 'ngx-toastr';
-import {OrderService} from '../../../services/order.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { UtilitiesService } from '../../../services/utilities.service';
+import { LoginService } from '../../../services/login.service';
+import { ToastrService } from 'ngx-toastr';
+import { OrderService } from '../../../services/order.service';
 
 @Component({
   selector: 'app-delivery-man',
@@ -34,8 +34,8 @@ export class DeliveryManComponent implements OnInit {
 
   private _color = 'light';
 
-  constructor(private utilitiesService: UtilitiesService, private orderService: OrderService, private loginService: LoginService,
-              private toastr: ToastrService) {
+  constructor(public utilitiesService: UtilitiesService, private orderService: OrderService, private loginService: LoginService,
+    private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -129,7 +129,7 @@ export class DeliveryManComponent implements OnInit {
   }
 
   checkDetailProduct(index) {
-    const store = {...this.productsTmp[index]};
+    const store = { ...this.productsTmp[index] };
     const it = this.detailProduct.filter(data => data.idOrder === store.idOrder)
     if (it.length === 0) {
       this.detailProduct.push(store);
@@ -149,7 +149,7 @@ export class DeliveryManComponent implements OnInit {
       delete item.driver;
     }
     this.orderService.updateOrders(this.loginService.tokenSecret, this.listProduct).subscribe(it => {
-      this.toastr.success(it.data.code +': ' +  it.data.message, 'Info', {
+      this.toastr.success(it.data.code + ': ' + it.data.message, 'Info', {
         timeOut: 7000,
       });
       this.getOrders();
@@ -176,7 +176,7 @@ export class DeliveryManComponent implements OnInit {
   }
 
   clean() {
-     this.listProduct.length = 0;
+    this.listProduct.length = 0;
   }
 
   orderClear() {
@@ -191,14 +191,14 @@ export class DeliveryManComponent implements OnInit {
   }
 
   onChangeState(event: any, store: any) {
-    if(event.target.value  === 'DEFAULT')  {
+    if (event.target.value === 'DEFAULT') {
       return;
     }
     store.state = event.target.value;
   }
 
   onchangeDriver(event: any, store: any) {
-    if(event.target.value  === 'DEFAULT')  {
+    if (event.target.value === 'DEFAULT') {
       return;
     }
     store.driver = event.target.value;
@@ -214,14 +214,14 @@ export class DeliveryManComponent implements OnInit {
 
     let state = true;
     for (const item of this.detailProduct) {
-      const  purchases = this.product.filter(it => it.idOrder === it.idOrder)[0]
+      const purchases = this.product.filter(it => it.idOrder === it.idOrder)[0]
       if (item.driver === undefined || purchases.state === item.state) {
         state = false;
         break;
       }
     }
 
-    if(!state) {
+    if (!state) {
       this.toastr.error('Debe seleccionar el estado y conductor, adicional el estado no puede ser al actual', 'Error', {
         timeOut: 7000,
       });
@@ -229,7 +229,7 @@ export class DeliveryManComponent implements OnInit {
     }
 
     this.orderService.updateOrders(this.loginService.tokenSecret, this.detailProduct).subscribe(it => {
-      this.toastr.success(it.data.code +': ' +  it.data.message, 'Info', {
+      this.toastr.success(it.data.code + ': ' + it.data.message, 'Info', {
         timeOut: 7000,
       });
       this.getOrders();
