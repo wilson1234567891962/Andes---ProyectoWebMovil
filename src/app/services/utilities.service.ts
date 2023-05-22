@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilitiesService {
-  private _language= [
+  private _language = [
     {
       login: {
         email: 'CORREO ELECTRONICO',
@@ -57,10 +57,11 @@ export class UtilitiesService {
         amountAvailabe: 'CANTIDAD DISPONIBLE',
         driver: 'CONDUCTOR',
         runOrders: 'PROCESAR ORDENES',
-        cancelOrders: 'CANCELAR ORDENES'
+        cancelOrders: 'CANCELAR ORDENES',
+        numOrden: '#ORDEN',
       },
       deliveryMan: {
-        title:'ACTUALIZAR',
+        title: 'ACTUALIZAR',
         clean: 'LIMPIAR',
         restore: 'DEVOLVER'
       }
@@ -117,10 +118,11 @@ export class UtilitiesService {
         amountAvailabe: 'AMOUNT AVAILABLE',
         driver: 'DRIVER',
         runOrders: 'PROCESS ORDERS',
-        cancelOrders: 'CANCEL ORDERS'
+        cancelOrders: 'CANCEL ORDERS',
+        numOrden: '#ORDER',
       },
       deliveryMan: {
-        title:'UPDATED',
+        title: 'UPDATED',
         clean: 'CLEAN',
         restore: 'RESTORE'
       }
@@ -159,7 +161,7 @@ export class UtilitiesService {
     const day = date.getDate();
     const month = date.getMonth();
     const year = date.getFullYear();
-    inputDataPicker.setDate(inputDataPicker.getDate()+1);
+    inputDataPicker.setDate(inputDataPicker.getDate() + 1);
     return day === inputDataPicker.getDate() && month === inputDataPicker.getMonth() && year === inputDataPicker.getFullYear();
   }
 
@@ -239,13 +241,13 @@ export class UtilitiesService {
     };
   }
 
-  getLanguage(){
-    const language = localStorage.getItem('LANGUAGE') ? localStorage.getItem('LANGUAGE') : 'ESPAÑOL' ;
-    if(language === 'ESPAÑOL'){
+  getLanguage() {
+    const language = localStorage.getItem('LANGUAGE') ? localStorage.getItem('LANGUAGE') : 'ESPAÑOL';
+    if (language === 'ESPAÑOL') {
       return this._language[0];
     }
 
-    if(language === 'INGLES'){
+    if (language === 'INGLES') {
       return this._language[1];
     }
   }
