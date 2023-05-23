@@ -60,7 +60,7 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [{
     provide: APP_BASE_HREF,
-    useValue: '/'
+    useValue: 'https://wilson1234567891962.github.io/Andes---ProyectoWebMovil/index.html'
   }]
 })
 export class AppRoutingModule {}
