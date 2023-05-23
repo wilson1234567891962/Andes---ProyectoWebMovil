@@ -21,6 +21,7 @@ import { LandingComponent } from './views/landing/landing.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import {RoutingGuard} from './guard/routing.guard';
 import {DeliveryManComponent} from './components/logistic/delivery-man/delivery-man.component';
+import {APP_BASE_HREF} from "@angular/common";
 
 const routes: Routes = [
   // admin views
@@ -57,5 +58,9 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
+  providers: [{
+    provide: APP_BASE_HREF,
+    useValue: '/'
+  }]
 })
 export class AppRoutingModule {}
