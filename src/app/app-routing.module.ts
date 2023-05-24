@@ -21,7 +21,7 @@ import { LandingComponent } from './views/landing/landing.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import {RoutingGuard} from './guard/routing.guard';
 import {DeliveryManComponent} from './components/logistic/delivery-man/delivery-man.component';
-// import {APP_BASE_HREF} from "@angular/common";
+import {APP_BASE_HREF} from "@angular/common";
 
 const routes: Routes = [
   // admin views
@@ -59,7 +59,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [{
-    provide: '',
+    provide: APP_BASE_HREF,
     useValue: 'https://wilson1234567891962.github.io/Andes---ProyectoWebMovil/'
   }]
 })
