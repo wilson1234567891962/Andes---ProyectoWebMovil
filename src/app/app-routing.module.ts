@@ -59,8 +59,8 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [{
-    provide: '/',
-    useValue: 'https://wilson1234567891962.github.io/Andes---ProyectoWebMovil/index.html'
+    provide: 'https://wilson1234567891962.github.io/Andes---ProyectoWebMovil/',
+    useValue: ''
   }]
 })
 export class AppRoutingModule {}
