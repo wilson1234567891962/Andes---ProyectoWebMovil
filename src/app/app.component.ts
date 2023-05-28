@@ -10,6 +10,7 @@ export class AppComponent {
   constructor(private loadingService: LoadingService ) {
 
   }
+  
   getStateLoading(): boolean {
     return this.loadingService.getStateLoading();
   }
