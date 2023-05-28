@@ -11,6 +11,7 @@ export class AppComponent {
 
   }
   
+  
   getStateLoading(): boolean {
     return this.loadingService.getStateLoading();
   }
